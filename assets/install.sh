@@ -51,7 +51,7 @@ while IFS=':' read -r _user _pwd; do
   echo "Making user $_user"
   echo $_pwd | saslpasswd2 -p -c -u $maildomain $_user
 done < /tmp/passwd
-chown postfix.cyrus /etc/sasldb2
+chown postfix.postfix /etc/sasl2/sasldb2
 
 ############
 # Enable TLS
@@ -128,5 +128,6 @@ EOF
 cat >> /etc/opendkim/SigningTable <<EOF
 *@$maildomain mail._domainkey.$maildomain
 EOF
+chown opendkim:opendkim /etc/opendkim/domainkeys
 chown opendkim:opendkim $(find /etc/opendkim/domainkeys -iname *.private)
 chmod 400 $(find /etc/opendkim/domainkeys -iname *.private)
