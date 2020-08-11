@@ -7,6 +7,7 @@ RUN apk add --update \
         opendkim-utils \
         postfix \
         supervisor \
+        rsyslog \
         cyrus-sasl \
    && rm  -rf /tmp/* /var/cache/apk/*
 ADD assets/install.sh /opt/install.sh
