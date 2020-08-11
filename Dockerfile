@@ -11,7 +11,10 @@ RUN apk add --update \
    && rm  -rf /tmp/* /var/cache/apk/*
 ADD assets/install.sh /opt/install.sh
 ADD assets/supervisord.conf /etc/supervisord.conf
-RUN mkdir -p /etc/supervisor/conf.d
+RUN mkdir -p \
+    /etc/supervisor/conf.d \
+    /etc/postfix/sasl \
+    /etc/default/opendkim
 
 # Run
-CMD /opt/install.sh;/usr/bin/supervisord -c /etc/supervisor/supervisord.conf
+CMD /opt/install.sh;/usr/bin/supervisord -c /etc/supervisord.conf

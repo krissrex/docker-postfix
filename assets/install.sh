@@ -51,7 +51,7 @@ while IFS=':' read -r _user _pwd; do
   echo "Making user $_user"
   echo $_pwd | saslpasswd2 -p -c -u $maildomain $_user
 done < /tmp/passwd
-chown postfix.sasl /etc/sasldb2
+chown postfix.cyrus /etc/sasldb2
 
 ############
 # Enable TLS
@@ -88,7 +88,7 @@ postconf -e milter_default_action=accept
 postconf -e smtpd_milters=inet:localhost:12301
 postconf -e non_smtpd_milters=inet:localhost:12301
 
-cat >> /etc/opendkim.conf <<EOF
+cat > /etc/opendkim/opendkim.conf <<EOF
 AutoRestart             Yes
 AutoRestartRate         10/1h
 UMask                   002
@@ -111,7 +111,7 @@ UserID                  opendkim:opendkim
 
 Socket                  inet:12301@localhost
 EOF
-cat >> /etc/default/opendkim <<EOF
+cat > /etc/default/opendkim <<EOF
 SOCKET="inet:12301@localhost"
 EOF
 
