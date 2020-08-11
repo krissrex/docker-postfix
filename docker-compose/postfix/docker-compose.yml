@@ -1,0 +1,14 @@
+version: "3.3"
+
+services:
+    postfix:
+        image: catatnight/postfix:alpine
+        restart: always
+        volumes:
+            - "./keys/dkim:/etc/opendkim/domainkeys"
+            - "./keys/tls:/etc/postfix/certs"
+        ports:
+            - "25:25"   # SMTP
+            - "587:587" # TLS
+        env_file: .env
+
