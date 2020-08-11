@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
     postfix:
-        image: catatnight/postfix:alpine
+        image: krissrex/postfix:alpine
         restart: always
         volumes:
             - "./keys/dkim:/etc/opendkim/domainkeys"

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build -t catatnight/postfix:alpine .
+docker build -t krissrex/postfix:alpine .

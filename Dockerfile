@@ -1,5 +1,5 @@
 FROM alpine
-MAINTAINER Elliott Ye
+LABEL maintainer="Kristian Rekstad"
 
 # Update
 RUN apk add --update \
